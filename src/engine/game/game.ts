@@ -7,7 +7,7 @@ import setLevelEvent from "../events/setLevelEvent";
 import setLoop from "../time/setLoop";
 // import Hammer from "hammerjs";
 // import swipeEvent from "../events/swipeEvent";
-// import handleSwipeEvent from "../events/handleSwipeEvent";
+
 /**
  * Запуск игры
  * @param start - уровень, с которого начинается игра

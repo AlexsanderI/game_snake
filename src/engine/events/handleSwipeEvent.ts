@@ -5,22 +5,13 @@ import findLastMoveDirection from "../protocol/findLastMoveDirection";
 import { checkPause } from "./pauseEvent";
 import { getInterruptGame } from "./interruptGameEvent";
 import protocolExecutor from "../protocol/protocolExecutor";
-import { TouchEventHandler } from "react";
+import { TouchEvent } from "react";
 
 let x1: number | null = null;
 let y1: number | null = null;
 
-const handleSwipeEvent: TouchEventHandler<HTMLDivElement> = (e): Event => {
+const handleSwipeEvent = (e: TouchEvent): Event => {
   const moveDirection = findLastMoveDirection();
-  // e.preventDefault();
-  // document.addEventListener("touchstart", handleTouchStart, false);
-  // document.addEventListener("touchmove", handleTouchMove, false);
-
-  // const logBlock = document.getElementById("root");
-
-  // let xDiff: number; // Объявление переменной xDiff
-  // let yDiff: number; // Объявление переменной yDiff
-
   let newName = "";
   let newValue = 0;
   if (checkTimerStep() || getInterruptGame())
@@ -38,13 +29,11 @@ const handleSwipeEvent: TouchEventHandler<HTMLDivElement> = (e): Event => {
       const xDiff = x2 - x1;
       const yDiff = y2 - y1;
 
-      // console.log("Sashunia", x1, y1, xDiff, yDiff);
+      console.log("Sashunia", x1, y1, xDiff, yDiff);
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
         if (xDiff > 0 && moveDirection !== "Y") {
           newName = "Y";
           newValue = 1;
-
-          console.log("right", moveDirection, xDiff);
         } else if (xDiff < 0 && moveDirection !== "Y") {
           newName = "Y";
           newValue = -1;
@@ -66,7 +55,7 @@ const handleSwipeEvent: TouchEventHandler<HTMLDivElement> = (e): Event => {
     y1 = null;
   }
 
-  if (newName !== "" && !checkPause() && moveDirection !== "") {
+  if (!checkPause() && moveDirection !== "") {
     TIMER.startTimer();
   }
 
