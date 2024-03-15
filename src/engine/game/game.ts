@@ -19,11 +19,6 @@ import setLoop from "../time/setLoop";
 function game(start: number): void {
   setLevelEvent(start);
   setLoop();
-
-  // document.addEventListener("keydown", keyboardEvents);
-  // document.addEventListener("touchstart", handleSwipeEvent);
-  // document.addEventListener("touchmove", handleSwipeEvent);
-  // document.addEventListener("touchend", handleSwipeEvent);
 }
 
 export default game;

@@ -2,10 +2,10 @@ import { Event } from "../../types/event";
 import * as TIMER from "../time/isTimer";
 import checkTimerStep from "../time/checkTimerStep";
 import findLastMoveDirection from "../protocol/findLastMoveDirection";
-import { checkPause } from "./pauseEvent";
 import { getInterruptGame } from "./interruptGameEvent";
 import protocolExecutor from "../protocol/protocolExecutor";
 import { TouchEvent } from "react";
+// import { getProtocol } from "../protocol/protocol";
 
 let x1: number | null = null;
 let y1: number | null = null;
@@ -55,14 +55,19 @@ const handleSwipeEvent = (e: TouchEvent): Event => {
     y1 = null;
   }
 
-  if (!checkPause() && moveDirection !== "") {
-    TIMER.startTimer();
-  }
+  // const firstStep = getProtocol().every((event) => event.name !== "");
 
-  const newEvent = Object.assign({}, { name: newName, value: newValue });
+  // const startGame = newName !== "" || !firstStep;
+
+  if (
+    newName !== ""
+    // newValue !== 0
+  )
+    TIMER.startTimer();
+
+  const newEvent = { name: newName, value: newValue };
   console.log(newEvent);
   protocolExecutor(newEvent);
-
   return newEvent;
 };
 
