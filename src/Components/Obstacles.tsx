@@ -1,33 +1,41 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Vector3 } from "@react-three/fiber";
+import { Vector3, useLoader } from "@react-three/fiber";
 import { getObstaclesFixCoord } from "./../engine/obstacles/obstaclesFix";
 import { getField } from "./../engine/field/fieldPerLevel";
 import { getObstaclesXCoord } from "./../engine/obstacles/obstaclesX";
 import { getTimer } from "./../engine/time/timer";
 import { getObstaclesYCoord } from "./../engine/obstacles/obstaclesY";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 export const ObstaclesFix: React.FC = () => {
+  const gltf = useLoader(GLTFLoader, "/obstacleRock.glb");
   const gridSize = getField();
   const [obstaclesFixCoord, setObstaclesFixCoord] = useState<Array<Vector3>>([
-    [0, 0, 0],
+    [0, 0, 0.5],
   ]);
   useEffect(() => {
     const fixObstacles: Vector3[] = getObstaclesFixCoord().map((coord) => {
       const fixObstacleX = Math.round(coord[1] - gridSize / 2 - 1);
       const fixObstaclesY = Math.round(coord[0] - gridSize / 2 - 1);
-      return [fixObstacleX, fixObstaclesY, 0];
+      return [fixObstacleX, fixObstaclesY, 0.5];
     });
     setObstaclesFixCoord(fixObstacles);
   }, [getTimer()]);
   return (
     <>
       {obstaclesFixCoord.map((coord: Vector3) => (
-        <mesh key={Math.random()} position={coord}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={"#cccc00"} />
-        </mesh>
+        <primitive
+          key={Math.random()}
+          object={gltf.scene}
+          position={coord}
+          scale={3}
+        />
+        // <mesh key={Math.random()} position={coord}>
+        //   <boxGeometry args={[1, 1, 1]} />
+        //   <meshStandardMaterial color={"#cccc00"} />
+        // </mesh>
       ))}
     </>
   );
