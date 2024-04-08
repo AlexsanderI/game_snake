@@ -10,7 +10,7 @@ import { getObstaclesYCoord } from "./../engine/obstacles/obstaclesY";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 export const ObstaclesFix: React.FC = () => {
-  const gltf = useLoader(GLTFLoader, "/obstacleRock.glb");
+  const gltf = useLoader(GLTFLoader, "/rockColoBr.glb");
   const gridSize = getField();
   const [obstaclesFixCoord, setObstaclesFixCoord] = useState<Array<Vector3>>([
     [0, 0, 0.5],
@@ -30,11 +30,14 @@ export const ObstaclesFix: React.FC = () => {
           key={Math.random()}
           object={gltf.scene}
           position={coord}
-          scale={3}
-        />
+          scale={50}
+          // material={{ color: "red" }}
+        >
+          <meshStandardMaterial color={"red"} />
+        </primitive>
         // <mesh key={Math.random()} position={coord}>
         //   <boxGeometry args={[1, 1, 1]} />
-        //   <meshStandardMaterial color={"#cccc00"} />
+
         // </mesh>
       ))}
     </>

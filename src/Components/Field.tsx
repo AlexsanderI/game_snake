@@ -12,7 +12,7 @@ const Fields: React.FC<FieldsProps> = ({ size }) => {
       <mesh position={[0, 0, 0]} receiveShadow>
         <planeGeometry args={[size, size]} />
         <meshStandardMaterial
-          color="green"
+          color="gray"
           map={texture}
           map-repeat={[size, size]}
         />

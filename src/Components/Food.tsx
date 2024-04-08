@@ -10,7 +10,7 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 const Food: React.FC = () => {
-  const gltf = useLoader(GLTFLoader, "/untitled.glb");
+  const gltf = useLoader(GLTFLoader, "/apple.glb");
 
   const [foodPosition, setFoodPosition] = useState<Vector3>([0, 0, 0.5]);
   useEffect(() => {
