@@ -31,9 +31,10 @@ export const ObstaclesFix: React.FC = () => {
           object={gltf.scene}
           position={coord}
           scale={50}
+          rotation={[1, 0, 0]}
           // material={{ color: "red" }}
         >
-          <meshStandardMaterial color={"red"} />
+          {/* <meshStandardMaterial color={"#red"} /> */}
         </primitive>
         // <mesh key={Math.random()} position={coord}>
         //   <boxGeometry args={[1, 1, 1]} />
