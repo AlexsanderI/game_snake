@@ -18,11 +18,11 @@ import { checkTimerWorking } from "../time/isTimer";
 function speedEvent(e: KeyboardEvent): Event {
   let newEvent: Event = Object.assign({}, { name: "", value: "" });
   const moveDirection = findLastMoveDirection();
-  if (moveDirection === "X" || moveDirection === "Y") {
+  if (moveDirection.name === "X" || moveDirection.name === "Y") {
     if (e.code === "ShiftRight" && checkTimerWorking()) {
-      newEvent = Object.assign({}, { name: moveDirection, value: "+" });
+      newEvent = Object.assign({}, { name: moveDirection.name, value: "+" });
     } else if (e.code === "ControlRight" && checkTimerWorking()) {
-      newEvent = Object.assign({}, { name: moveDirection, value: "-" });
+      newEvent = Object.assign({}, { name: moveDirection.name, value: "-" });
     }
   }
 

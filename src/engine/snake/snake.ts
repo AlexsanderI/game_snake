@@ -2,11 +2,13 @@
  * @module snake.ts Управляет змейкой
  *    @var snakeHead Параметры головы змейки
  *    @var snakeBody Координаты тела змейки
+ *    @var previousSnake Координаты тела змейки на предыдущем шаге
  *    @function setSnakeHeadParams Устанавливает параметры головы змейки
  *    @function setSnakeBodyCoord Устанавливает координаты тела змейки
  *    @function addSnakeBodyCoord Добавляет звено в тело змейки
  *    @function getSnakeHeadParams Возвращает параметры головы змейки
  *    @function getSnakeBodyCoord Возвращает координаты тела змейки
+ *    @function getPreviousSnake Возвращает предыдущие координаты тела змейки
  */
 import * as SNAKE from "../../types/snake";
 /**
@@ -18,7 +20,12 @@ let snakeHead: SNAKE.SnakeHeadCoord;
  */
 let snakeBody: SNAKE.SnakeBodyCoord = [];
 /**
+ * @var массив с координатами головы и тела змейки на предыдущем шаге
+ */
+let previousSnakeBody: SNAKE.SnakeBodyCoord = [];
+/**
  * Задает параметры головы змейки
+ * @param snake Объект с параметрами головы змейки
  */
 export function setSnakeHeadParams(snake: SNAKE.SnakeHeadCoord): void {
   snakeHead = Object.assign({}, snake);
@@ -35,6 +42,7 @@ export function addSnakeBodyCoord(link: number[]): void {
  * @param body Координаты всех звеньев тела змейки
  */
 export function setSnakeBodyCoord(body: SNAKE.SnakeBodyCoord): void {
+  previousSnakeBody = [...snakeBody];
   snakeBody = [...body];
 }
 /**
@@ -49,4 +57,11 @@ export function getSnakeHeadParams(): SNAKE.SnakeHeadCoord {
  */
 export function getSnakeBodyCoord(): SNAKE.SnakeBodyCoord {
   return snakeBody;
+}
+/**
+ * Возвращает координаты тела змейки на предыдущем шаге
+ * @returns previousSnakeBody
+ */
+export function getPreviousSnake(): SNAKE.SnakeBodyCoord {
+  return previousSnakeBody;
 }

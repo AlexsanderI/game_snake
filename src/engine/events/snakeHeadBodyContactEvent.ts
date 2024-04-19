@@ -15,6 +15,7 @@ function snakeHeadBodyContactEvent(snakeHead: SnakeHeadCoord): SnakeHeadCoord {
   SNAKE.getSnakeBodyCoord().forEach((pos, index) => {
     if (
       index !== 0 &&
+      index !== SNAKE.getSnakeBodyCoord().length - 1 &&
       snakeHead.snakeHeadCoordX === pos[0] &&
       snakeHead.snakeHeadCoordY === pos[1]
     ) {

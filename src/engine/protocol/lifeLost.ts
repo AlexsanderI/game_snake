@@ -14,15 +14,17 @@ import { stopTimer } from "../time/isTimer";
  *      3. Возвращает игру в состояние ожидания новых действий игрока
  */
 function lifeLost(): void {
+  stopTimer();
   if (checkMistake()) {
-    alert(
-      `You made a mistake ${getSnakeHeadParams().snakeHeadCoordX} : ${
-        getSnakeHeadParams().snakeHeadCoordY
-      } here! Be careful! You only have ${getLives()} lives left!`
-    );
-    setLives(-1);
-    noMistakeWasMade();
-    stopTimer();
+    setTimeout(() => {
+      alert(
+        `You made a mistake ${getSnakeHeadParams().snakeHeadCoordX} : ${
+          getSnakeHeadParams().snakeHeadCoordY
+        } here! Be careful! You only have ${getLives()} lives left!`
+      );
+      setLives(-1);
+      noMistakeWasMade();
+    }, 500);
   }
 }
 

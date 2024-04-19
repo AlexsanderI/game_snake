@@ -19,7 +19,7 @@ import moveSnake from "../snake/moveSnake";
  */
 function playLevel() {
   setBonusParams();
-  setObstacleParams(500);
+  setObstacleParams(600);
   moveSnake();
   snakeCatchesFoodEvent();
   snakeCatchesBonusEvent();

@@ -30,11 +30,11 @@ function setSpeed(speed: number) {
   if (checkPause()) return;
   const currentTimeStep = TIMER.getStep();
   obstacleSpeedReset();
-  if (currentTimeStep > 0 && currentTimeStep < 5)
+  if (currentTimeStep > 0 && currentTimeStep < 10)
     TIMER.setTimerStep(
       currentTimeStep + speed === 0 ? currentTimeStep : currentTimeStep + speed
     );
-  if (TIMER.getStep() === 5 && speed < 0) TIMER.setTimerStep(4);
+  if (TIMER.getStep() === 10 && speed < 0) TIMER.setTimerStep(9);
   if (currentTimeStep + speed === 0) {
     if (!checkTimerStep())
       snakeHeadSteps = [

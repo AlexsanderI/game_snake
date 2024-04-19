@@ -20,7 +20,8 @@ import findLastMoveDirection from "../protocol/findLastMoveDirection";
 function keyboardEvents(e: KeyboardEvent) {
   const newDirection = changeDirectionEvent(e);
   const newSpeed = speedEvent(e);
-  const pause = findLastMoveDirection() !== "" ? keyboardPauseEvent(e) : false;
+  const pause =
+    findLastMoveDirection().name !== "" ? keyboardPauseEvent(e) : false;
 
   if (!pause && newDirection.name !== "") TIMER.startTimer();
   if (

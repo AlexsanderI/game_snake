@@ -19,7 +19,13 @@ function setSnakeStartEvent(position: number[]): void {
     SNAKE.getSnakeHeadParams().snakeHeadCoordX,
     SNAKE.getSnakeHeadParams().snakeHeadCoordY,
   ];
+  const snakeTail = [
+    SNAKE.getSnakeHeadParams().snakeHeadCoordX - 1,
+    SNAKE.getSnakeHeadParams().snakeHeadCoordY,
+  ];
   SNAKE.setSnakeBodyCoord([snakeHead]);
+  SNAKE.addSnakeBodyCoord(snakeTail);
+  SNAKE.addSnakeBodyCoord([]);
   addEvent({
     name: "set snake to start",
     value: snakeHead[0] + ":" + snakeHead[1],
