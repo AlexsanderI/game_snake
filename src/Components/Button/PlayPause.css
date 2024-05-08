@@ -1,9 +1,15 @@
+.play-button {
+  font-size: calc(1.5vw + 1.5vh);
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 1vw;
+}
+
 .playpause {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  /* border-radius: 50%; */
-  /* background: transparent; */
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
@@ -13,8 +19,9 @@
 } */
 
 .playpause .button {
-  width: 80px;
-  height: 80px;
+  width: 2.5vw;
+  height: 2.5vh;
+
   background: #f0f0f0;
   transition: inherit;
   clip-path: polygon(

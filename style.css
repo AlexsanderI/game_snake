@@ -19,7 +19,7 @@ body {
 
 .wrapper {
   width: 85vmin;
-  height: 90vmin;
+  height: 100vmin;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -34,17 +34,20 @@ body {
   display: flex;
   justify-content: space-between;
 }
+<
+
 
 /* @media screen and (max-width: 800px) {
+
   .wrapper {
     width: 90vmin;
-    height: 115vmin;
+    height: 107vmin;
   }
-  .game-details {
+  /* .game-details {
     font-size: 1rem;
     padding: 15px 5px;
-  }
-} */
+  } */
+}
 /****************************************************************************************/
 /* * {
   margin: 0;
