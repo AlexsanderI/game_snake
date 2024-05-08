@@ -5,11 +5,12 @@
  *    @function setTimerStep Задает индекс шага перерисовки
  *    @function getStep Возвращает индекс шага перерисовки
  *    @function getTimerStep Возвращает шаг перерисовки
+ *    @function getSpeedLimit Возращает количество шагов перерисовки
  */
 /**
  *  @var Шаги перерисовки экрана в миллисекундах
  */
-const steps = [0, 600, 300, 200, 150, 120, 100, 75, 60, 50, 40];
+const steps = [0, 600, 300, 200, 150, 120];
 /**
  * @var Индекс интервала перерисовки игры в массиве steps
  */
@@ -34,4 +35,11 @@ export function getStep(): number {
  */
 export function getTimerStep(): number {
   return steps[timerStepPerLevel];
+}
+/**
+ * Возвращает количество интервалов перерисовки -
+ * фиксированных скоростей змейки
+ */
+export function getSpeedLimit(): number {
+  return steps.length - 1;
 }

@@ -2,7 +2,7 @@
  *  @module playLevel.ts Управляет игрой на текущем уровне
  *     @function playLevel Последовательно запускает игровые функции
  */
-import { setBonusParams } from "../bonuses/bonusParams";
+
 import snakeCatchesBonusEvent from "../events/snakeCatchesBonusEvent";
 import { snakeCatchesFoodEvent } from "../events/snakeCatchesFoodEvent";
 import setObstacleParams from "../obstacles/setObstacleParams";
@@ -18,7 +18,7 @@ import moveSnake from "../snake/moveSnake";
  *      - изменяются, если предусмотрено, координаты бонусов
  */
 function playLevel() {
-  setBonusParams();
+  // setBonusParams();
   setObstacleParams(600);
   moveSnake();
   snakeCatchesFoodEvent();

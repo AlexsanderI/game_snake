@@ -1,6 +1,6 @@
 /**
  *  @module bonusAddScores.ts Управляет бонусом, добавляющим жизни
- *     @var addedScoresФиксирует добавление жизней
+ *     @var addedScores Фиксирует добавление жизней
  *     @function bonusAddScores Запускается, когда жизни добавлены
  *     @function bonusAddScoresDeactivate Запускается, когда добавить невозможно
  *     @function checkAddScores Возвращает состояние бонуса

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Vector3 } from "@react-three/fiber";
@@ -13,8 +14,8 @@ const Bonuses: React.FC = () => {
   useEffect(() => {
     const gridSize = getField();
     if (getBonusCoord()) {
-      const bonusX = Math.round(getBonusCoord()[1] - gridSize / 2 - 1);
-      const bonusY = Math.round(getBonusCoord()[0] - gridSize / 2 - 1);
+      const bonusX = Math.round(getBonusCoord()[0] - gridSize / 2 - 1);
+      const bonusY = Math.round(getBonusCoord()[1] - gridSize / 2 - 1);
       const currentBonusPosition: Vector3 = [bonusX, bonusY, 0];
       setBonusPosition(currentBonusPosition);
     }

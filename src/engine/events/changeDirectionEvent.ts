@@ -1,6 +1,6 @@
 /**
  * @module changeDirectionEvent.ts Управление змейкой с клавиатуры
- *    @var previousHeadCoord Хранит положение головы змейки перед текущим ходом
+ *    @var prohibitedMove Хранит параметры запрещенного обратного хода змейки
  *    @function changeDirectionEvent Отрабатывает нажатие клавиш
  */
 import { Event } from "../../types/event";
@@ -9,80 +9,64 @@ import checkTimerStep from "../time/checkTimerStep";
 import findLastMoveDirection from "../protocol/findLastMoveDirection";
 import { getInterruptGame } from "./interruptGameEvent";
 import { checkPause } from "./pauseEvent";
-import { getSnakeHeadParams } from "../snake/snake";
 import { checkTimerWorking } from "../time/isTimer";
 import { checkMistake } from "../lives/isMistake";
+import getSnakeMoveDirection from "../snake/getSnakeMoveDirection";
 /**
  * @var Положение головы змейки перед совершением хода (для анимации)
  */
-const previousHeadCoord = {
-  x: 0,
-  y: 0,
+const prohibitedMove = {
+  direction: "",
+  step: 0,
 };
-/**
- * Запоминает положение головы змейки на текущем ходе
- */
-function setPreviousHeadCoord(coord: number[]) {
-  previousHeadCoord.x = coord[0];
-  previousHeadCoord.y = coord[1];
-}
 /**
  * Изменяет направление движения змейки при нажатии клавиш со стрелками
  * @param e событие нажатия клавиши на клавиатуре
  * @description
  * 1. После паузы позволяет двигаться змейке в прежнем направлении
  * 2. Повтороное нажатие не отрабатывается
- * 3. Если скорость движения змейки нулевая, нажатие также не отрабатывается
- * 4. Если последнее нажатие не отработано, следующее также не отрабатывается
- * 5. Отработка нажатия клавиши происходит внесением записи об этом в протокол
- * 6. Нажатие клавиши запускает игру
+ * 3. Движение змейки в обратную сторону запрещено
+ * 4. Отработка нажатия клавиши происходит внесением записи об этом в протокол
+ * 5. Нажатие клавиши запускает игру
  * @returns событие изменения направления движения змейки, или "пустое" событие
  */
 const changeDirectionEvent = (e: KeyboardEvent): Event => {
   const moveDirection = findLastMoveDirection();
   let newName = "";
   let newValue = 0;
-  let backValueX = 0;
-  let backValueY = 0;
+  prohibitedMove.direction = getSnakeMoveDirection()[0];
+  prohibitedMove.step =
+    getSnakeMoveDirection()[1] === "up" ||
+    getSnakeMoveDirection()[1] === "right"
+      ? -1
+      : 1;
   if (!checkTimerWorking()) {
-    setPreviousHeadCoord([0, 0]);
-    backValueX =
-      moveDirection.name === "X" ? getSnakeHeadParams().snakeHeadStepX : 0;
-    backValueY =
-      moveDirection.name === "Y" ? getSnakeHeadParams().snakeHeadStepY : 0;
     moveDirection.name = "";
   }
-  if (
-    checkMistake() ||
-    checkTimerStep() ||
-    getInterruptGame() ||
-    (previousHeadCoord.x === getSnakeHeadParams().snakeHeadCoordX &&
-      previousHeadCoord.y === getSnakeHeadParams().snakeHeadCoordY)
-  )
+  if (checkMistake() || checkTimerStep() || getInterruptGame())
     return { name: newName, value: newValue };
-  setPreviousHeadCoord([
-    getSnakeHeadParams().snakeHeadCoordX,
-    getSnakeHeadParams().snakeHeadCoordY,
-  ]);
-  if (e.code === "ArrowUp" && moveDirection.name !== "X") {
-    newName = "X";
-    newValue = backValueX !== -1 ? 1 : -1;
+  if (e.code === "ArrowUp" && moveDirection.name !== "Y") {
+    newName = "Y";
+    newValue = 1;
   } else if (
     e.code === "ArrowDown" &&
-    moveDirection.name !== "X" &&
+    moveDirection.name !== "Y" &&
     findLastMoveDirection().name !== ""
   ) {
+    newName = "Y";
+    newValue = -1;
+  } else if (e.code === "ArrowLeft" && moveDirection.name !== "X") {
     newName = "X";
-    newValue = backValueX !== 1 ? -1 : 1;
-  } else if (e.code === "ArrowLeft" && moveDirection.name !== "Y") {
-    newName = "Y";
-    newValue = backValueY !== 1 ? -1 : 1;
-  } else if (e.code === "ArrowRight" && moveDirection.name !== "Y") {
-    newName = "Y";
-    newValue = backValueY !== -1 ? 1 : -1;
+    newValue = -1;
+  } else if (e.code === "ArrowRight" && moveDirection.name !== "X") {
+    newName = "X";
+    newValue = 1;
   }
+  if (newName === prohibitedMove.direction && newValue === prohibitedMove.step)
+    return { name: "", value: 0 };
   if (newName !== "" && !checkPause()) TIMER.startTimer();
   const newEvent = Object.assign({}, { name: newName, value: newValue });
+
   return newEvent;
 };
 

@@ -24,8 +24,8 @@ export function snakeCatchesFoodEvent(): void {
   const foodCoord = getFoodCoord();
   isFoodEaten = false;
   if (
-    snakeHead.snakeHeadCoordX === foodCoord[1] &&
-    snakeHead.snakeHeadCoordY === foodCoord[0]
+    snakeHead.snakeHeadCoordX === foodCoord[0] &&
+    snakeHead.snakeHeadCoordY === foodCoord[1]
   ) {
     isFoodEaten = true;
     if (getDoubleScoresFood())

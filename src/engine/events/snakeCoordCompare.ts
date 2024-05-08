@@ -1,6 +1,6 @@
 /**
- *  @module snakeHeadCoordCompare.ts Управляет контактами головы змейки
- *     @function snakeHeadCoordCompare Сравнивает координаты препятствий и головы змейки
+ *  @module snakeCoordCompare.ts Управляет контактами головы змейки
+ *     @function snakeCoordCompare Сравнивает координаты препятствий и головы змейки
  */
 import { SnakeHeadCoord, HeadCompare } from "../../types/snake";
 /**

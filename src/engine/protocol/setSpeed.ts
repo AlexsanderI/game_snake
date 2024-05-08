@@ -27,14 +27,16 @@ let snakeHeadSteps: number[];
  *  - позволяет изменение минимальной скорости игры только на 1
  */
 function setSpeed(speed: number) {
+  const maxSpeed = TIMER.getSpeedLimit();
   if (checkPause()) return;
   const currentTimeStep = TIMER.getStep();
   obstacleSpeedReset();
-  if (currentTimeStep > 0 && currentTimeStep < 10)
+  if (currentTimeStep > 0 && currentTimeStep < maxSpeed)
     TIMER.setTimerStep(
       currentTimeStep + speed === 0 ? currentTimeStep : currentTimeStep + speed
     );
-  if (TIMER.getStep() === 10 && speed < 0) TIMER.setTimerStep(9);
+  if (TIMER.getStep() === maxSpeed && speed < 0)
+    TIMER.setTimerStep(maxSpeed - 1);
   if (currentTimeStep + speed === 0) {
     if (!checkTimerStep())
       snakeHeadSteps = [

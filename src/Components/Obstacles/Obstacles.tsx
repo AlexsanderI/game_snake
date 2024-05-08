@@ -15,8 +15,8 @@ export const ObstaclesFix: React.FC = () => {
   ]);
   useEffect(() => {
     const fixObstacles: Vector3[] = getObstaclesFixCoord().map((coord) => {
-      const fixObstacleX = Math.round(coord[1] - gridSize / 2 - 1);
-      const fixObstaclesY = Math.round(coord[0] - gridSize / 2 - 1);
+      const fixObstacleX = Math.round(coord[0] - gridSize / 2 - 1);
+      const fixObstaclesY = Math.round(coord[1] - gridSize / 2 - 1);
       return [fixObstacleX, fixObstaclesY, 0];
     });
     setObstaclesFixCoord(fixObstacles);
@@ -40,8 +40,8 @@ export const ObstaclesX: React.FC = () => {
   ]);
   useEffect(() => {
     const xObstacles: Vector3[] = getObstaclesXCoord().map((coord) => {
-      const xObstacleX = Math.round(coord[1] - gridSize / 2 - 1);
-      const xObstaclesY = Math.round(coord[0] - gridSize / 2 - 1);
+      const xObstacleX = Math.round(coord[0] - gridSize / 2 - 1);
+      const xObstaclesY = Math.round(coord[1] - gridSize / 2 - 1);
       return [xObstacleX, xObstaclesY, 0];
     });
     setObstaclesXCoord(xObstacles);
@@ -65,8 +65,8 @@ export const ObstaclesY: React.FC = () => {
   ]);
   useEffect(() => {
     const yObstacles: Vector3[] = getObstaclesYCoord().map((coord) => {
-      const yObstacleX = Math.round(coord[1] - gridSize / 2 - 1);
-      const yObstaclesY = Math.round(coord[0] - gridSize / 2 - 1);
+      const yObstacleX = Math.round(coord[0] - gridSize / 2 - 1);
+      const yObstaclesY = Math.round(coord[1] - gridSize / 2 - 1);
       return [yObstacleX, yObstaclesY, 0];
     });
     setObstaclesYCoord(yObstacles);

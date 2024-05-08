@@ -8,7 +8,7 @@ import snakeBodySetScale from "./snakeBodySetScale";
 function snakeBodyTransform(index: number) {
   snakeBodyDiff(index);
   const [diffX, diffY] = getDiff();
-  const pos = snakeBodySetPosition(index, diffX, diffY, 0.05);
+  const pos = snakeBodySetPosition(index, diffX, diffY, 0);
   const rot = snakeBodySetRotation(index, diffX, diffY, 22);
   const scl = snakeBodySetScale(
     0.6 +

@@ -7,23 +7,23 @@ function snakeBodySetRotation(
   const rot =
     diffX === 0 && diffY === -1
       ? {
-          right: index % 2 === 0 ? [turn, 0, turn] : [0, 0, 0],
-          left: index % 2 === 0 ? [turn, 0, 0] : [0, 0, turn],
+          right: index % 2 === 0 ? [turn, 0, turn] : [0, 0, turn],
+          left: index % 2 === 0 ? [turn, 0, 0] : [0, 0, 0],
         }
       : diffX === 0 && diffY === 1
       ? {
-          right: index % 2 === 0 ? [turn, 0, 0] : [0, 0, turn],
-          left: index % 2 === 0 ? [turn, 0, turn] : [0, 0, 0],
+          right: index % 2 === 0 ? [turn, 0, 0] : [0, turn, turn / 2],
+          left: index % 2 === 0 ? [turn, 0, turn] : [turn, turn, 0],
         }
       : diffX === -1 && diffY === 0
       ? {
-          right: index % 2 === 0 ? [turn, turn, 0] : [turn, 0, turn],
-          left: index % 2 === 0 ? [turn, turn, turn] : [turn, 0, 0],
+          right: index % 2 === 0 ? [0, turn, 11] : [turn, 0, turn],
+          left: index % 2 === 0 ? [turn, 0, 11] : [turn, 0, 0],
         }
       : diffX === 1 && diffY === 0
       ? {
-          right: index % 2 === 0 ? [turn, turn, turn] : [turn, 0, 0],
-          left: index % 2 === 0 ? [turn, turn, 0] : [0, turn, 0],
+          right: index % 2 === 0 ? [turn, 0, 11] : [turn, 0, 0],
+          left: index % 2 === 0 ? [0, turn, 11] : [0, turn, 0],
         }
       : {
           right: [turn, 0, turn],

@@ -12,8 +12,9 @@ import { getTimer } from "../time/timer";
 import protocolExecutor from "../protocol/protocolExecutor";
 import { howMuchIsLeftToEat } from "../food/currentFoodNumber";
 import findLastMoveDirection from "../protocol/findLastMoveDirection";
+// import { checkExecution } from "../protocol/protocolExecutor";
 /**
- * Следит за нажатием клавиш со стрелками, Ctrl, Shift и Space
+ * Следит за нажатием клавиш со стрелками и Space
  * @param e событие нажатия клавиши на клавиатуре
  * @returns прерывает выполнение функции, если нажата неиспользуемая клавиша
  */
@@ -22,7 +23,6 @@ function keyboardEvents(e: KeyboardEvent) {
   const newSpeed = speedEvent(e);
   const pause =
     findLastMoveDirection().name !== "" ? keyboardPauseEvent(e) : false;
-
   if (!pause && newDirection.name !== "") TIMER.startTimer();
   if (
     (newDirection.name === "" && newSpeed.name === "") ||

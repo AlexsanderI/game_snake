@@ -1,14 +1,22 @@
-function snakeHeadSetRotation(diffX: number, diffY: number, turn: number) {
-  const rot =
-    diffX === 0 && diffY === -1
-      ? [turn, 0, turn]
-      : diffX === 0 && diffY === 1
-      ? [turn, 0, 0]
-      : diffX === -1 && diffY === 0
-      ? [turn, 0, 55]
-      : diffX === 1 && diffY === 0
-      ? [0, turn, 55]
-      : [turn, 0, turn];
+import findLastMoveDirection from "../../../engine/protocol/findLastMoveDirection";
+import { getSnakeHeadParams } from "../../../engine/snake/snake";
+const turn = 22;
+let rot: number[] = [turn, 0, turn];
+
+function snakeHeadSetRotation() {
+  const directionName = findLastMoveDirection().name;
+  const directions = getSnakeHeadParams();
+  if (directionName === "X" && directions.snakeHeadStepX === 1)
+    rot = [turn, 0, turn * 2.5];
+  if (directionName === "X" && directions.snakeHeadStepX === -1)
+    rot = [0, turn, turn * 2.5];
+  if (
+    (directionName === "Y" && directions.snakeHeadStepY === 1) ||
+    directionName === ""
+  )
+    rot = [turn, 0, turn];
+  if (directionName === "Y" && directions.snakeHeadStepY === -1)
+    rot = [0, turn, turn];
 
   return rot;
 }

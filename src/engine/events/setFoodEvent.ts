@@ -26,8 +26,7 @@ function setFoodEvent(): void {
         SNAKE.getSnakeBodyCoord()
       )
     );
-    FOOD.setFoodCoord([foodY, foodX]);
-
+    FOOD.setFoodCoord([foodX, foodY]);
     addEvent({
       name: "set food",
       value: FOOD.getFoodCoord()[0] + ":" + FOOD.getFoodCoord()[1],

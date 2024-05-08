@@ -10,6 +10,7 @@ import setLevelEvent from "../events/setLevelEvent";
 import { getScores } from "../scores/scores";
 import { getMaxScores } from "../scores/maxScoresPerLevel";
 import { setBonuses } from "../bonuses/bonusesPerLevel";
+import { useMenuStore } from "../../store/menuStore";
 /**
  * Отрабатывает успешное завершение текущего уровня игры
  * @description
@@ -17,10 +18,12 @@ import { setBonuses } from "../bonuses/bonusesPerLevel";
  *  - при победе заносит результат в протокол и останавливает игру
  */
 function levelComplete(): void {
+  const { toggleModal, selectTitleMenu } = useMenuStore.getState();
   LEVEL.setCurrentLevel(LEVEL.getCurrentLevel() + 1);
   if (LEVEL.getCurrentLevel() - getMaxLevel() === 1) {
     stopTimer();
-    alert("You WIN! Press OK to replay...");
+    toggleModal();
+    selectTitleMenu("You WIN! Press OK to replay...");
     addEvent({
       name: "you win",
       value: `your scores: ${getScores()}/${getMaxScores()}`,
@@ -29,7 +32,8 @@ function levelComplete(): void {
     location.reload();
   } else if (checkTimerWorking()) {
     stopTimer();
-    alert(
+    toggleModal();
+    selectTitleMenu(
       `Level ${
         LEVEL.getCurrentLevel() - 1
       } is complete! Congratulation! Well done! It's time to Level ${LEVEL.getCurrentLevel()}`

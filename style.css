@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
+
 body {
   display: flex;
   overflow: hidden;
@@ -14,6 +16,7 @@ body {
   width: 100vw;
   background: #e3f2fd;
 }
+
 .wrapper {
   width: 85vmin;
   height: 100vmin;
@@ -22,6 +25,7 @@ body {
   overflow: hidden;
   background: #293447;
 }
+
 .game-info {
   color: #b8c6dc;
   font-size: 3vmin;
@@ -30,7 +34,11 @@ body {
   display: flex;
   justify-content: space-between;
 }
-@media screen and (max-width: 800px) {
+<
+
+
+/* @media screen and (max-width: 800px) {
+
   .wrapper {
     width: 90vmin;
     height: 107vmin;
@@ -129,3 +137,5 @@ body {
     width: 75vw !important;
   }
 } */
+
+

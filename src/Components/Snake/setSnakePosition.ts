@@ -8,8 +8,8 @@ function setSnakePosition(index: number, snake: SnakeBodyCoord): Vector3 {
   if (snake.length !== 0 && snake[index]) {
     const i = snake[index].length !== 0 ? index : index - 1;
     newPosition = new Vector3(
-      Math.round(snake[i][1] - gridSize / 2 - 1),
       Math.round(snake[i][0] - gridSize / 2 - 1),
+      Math.round(snake[i][1] - gridSize / 2 - 1),
       0
     );
   }

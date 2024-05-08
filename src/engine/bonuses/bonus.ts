@@ -17,29 +17,32 @@ let currentBonus: number;
 let bonusCoord: number[];
 /**
  * Задает индекс текущего бонуса в массиве всех бонусов
- *
+ * @param index номер текущего бонуса в массиве бонусов
+ * @usedIn bonusHandlers.ts
  */
 export function setCurrentBonus(index: number) {
   currentBonus = index;
 }
 /**
  * Задает координаты X и Y текущего бонуса
- * @param coord
+ * @param coord координаты текущего бонуса
+ * @usedIn setBonusEvent.ts
  */
 export function setBonusCoord(coord: number[]) {
   bonusCoord = [...coord];
 }
-
 /**
  * Возвращает индекс текущего бонуса в массиве всех бонусов
- * @returns currentBonus
+ * @returns currentBonus индекс текущего бонуса
+ * @usedIn Bonuses.tsx
  */
 export function getCurrentBonus(): number {
   return currentBonus;
 }
 /**
  * Возвращает координаты X и Y текущего бонуса
- * @returns bonusCoord
+ * @returns bonusCoord координаты текущего бонуса
+ * @usedIn Bonuses.tsx, setBonusEvent.ts, contactBonusObstacle.ts
  */
 export function getBonusCoord(): number[] {
   return bonusCoord;

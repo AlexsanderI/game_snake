@@ -2,6 +2,7 @@
  *  @module gameOver.ts Обрабатывает событие окончания игры
  *     @function gameOver Выполняет закрытие текущей игры и запуск новой
  */
+import { useMenuStore } from "../../store/menuStore";
 import { stopTimer } from "../time/isTimer";
 import { getProtocol } from "./protocol";
 /**
@@ -10,9 +11,15 @@ import { getProtocol } from "./protocol";
  */
 function gameOver(value: string): void {
   stopTimer();
+  const { toggleModal, selectTitleMenu } = useMenuStore();
+  toggleModal();
   value === "lives limit"
-    ? alert("Game over! Lives limit! Press OK to replay...")
-    : alert("Game over! Time limit! Press OK to replay...");
+
+    ? selectTitleMenu("Game over! Lives limit! Press OK to replay...")
+    : value === "no moves"
+    ? selectTitleMenu("Game over! No moves! Press OK to replay...")
+    : selectTitleMenu("Game over! Time limit! Press OK to replay...");
+
   localStorage.setItem("protocol", JSON.stringify(getProtocol()));
   location.reload();
 }
