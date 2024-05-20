@@ -10,7 +10,12 @@ interface MenuState {
 export const useMenuStore = create<MenuState>((set) => ({
   isVisible: true,
   titleMenu: "start",
-  toggleModal: () => set((state) => ({ isVisible: !state.isVisible })),
+  toggleModal: () =>
+    set((state) => {
+      console.log("Hello World");
+
+      return { isVisible: !state.isVisible };
+    }),
   selectTitleMenu: (text) => set({ titleMenu: text }),
 }));
 interface PauseState {
