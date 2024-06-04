@@ -1,17 +1,23 @@
 [
   {
     "field": "17",
-    "time": "10000",
+    "time": "100000",
     "timerStep": "1",
     "food": "10",
     "lives": "3",
     "obstacles": ["fix", "fix", "fix", "fix", "fix"],
     "bonuses": [
       {
-        "type": "snakeBreaksObstacles",
+        "type": "addExtraLives",
         "value": "3",
         "startFood": "0",
         "endFood": "2"
+      },
+      {
+        "type": "addExtraTime",
+        "value": "8000",
+        "startFood": "3",
+        "endFood": "4"
       }
     ],
     "maxScores": "30"
@@ -25,10 +31,10 @@
     "obstacles": ["x", "y", "x", "y", "x", "y"],
     "bonuses": [
       {
-        "type": "snakeStopsGrowing",
-        "value": "2",
+        "type": "addExtraScores",
+        "value": "10",
         "startFood": "0",
-        "endFood": "2"
+        "endFood": "5"
       },
       {
         "type": "addExtraTime",

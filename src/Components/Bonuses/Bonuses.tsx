@@ -2,14 +2,17 @@
 
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Vector3 } from "@react-three/fiber";
+import { Vector3, useLoader } from "@react-three/fiber";
 import { getField } from "../../engine/field/fieldPerLevel";
 import { getFoodEaten } from "../../engine/events/snakeCatchesFoodEvent";
 import { getBonusCoord, getCurrentBonus } from "../../engine/bonuses/bonus";
 import { getBonusAvailability } from "../../engine/bonuses/bonusAvailableState";
 import { getBonuses } from "../../engine/bonuses/bonusesPerLevel";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 const Bonuses: React.FC = () => {
+  const heard = useLoader(GLTFLoader, "/heard.glb");
+  const clock = useLoader(GLTFLoader, "/clock.glb");
   const [bonusPosition, setBonusPosition] = useState<Vector3>([0, 0, 0]);
   useEffect(() => {
     const gridSize = getField();
@@ -35,10 +38,12 @@ const Bonuses: React.FC = () => {
             <meshStandardMaterial color="#6e4f71" />
           )}
           {getBonuses()[getCurrentBonus()].type === "addExtraTime" && (
-            <meshStandardMaterial color="#7f5a83" />
+            <primitive object={clock.scene} scale={0.5} color="yellow" />
+            // <meshStandardMaterial color="#7f5a83" />
           )}
           {getBonuses()[getCurrentBonus()].type === "addExtraLives" && (
-            <meshStandardMaterial color="#8c6c91" />
+            <primitive object={heard.scene} scale={0.1} color="red" />
+            //  <meshStandardMaterial color="#8c6c91" />
           )}
           {getBonuses()[getCurrentBonus()].type === "addExtraScores" && (
             <meshStandardMaterial color="#997d9e" />
