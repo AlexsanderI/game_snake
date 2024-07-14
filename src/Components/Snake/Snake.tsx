@@ -12,9 +12,10 @@ import { SnakePositionAnimationProps } from "../../types/three";
 
 interface SnakeProps {
   onHeadPositionUpdate: (position: [number, number, number]) => void;
+  opacity: number;
 }
 
-const Snake: React.FC<SnakeProps> = ({ onHeadPositionUpdate }) => {
+const Snake: React.FC<SnakeProps> = ({ onHeadPositionUpdate }, opacity) => {
   const snake: SnakePositionAnimationProps[] = [
     {
       initialPosition: [0, 0, 0],
@@ -28,12 +29,20 @@ const Snake: React.FC<SnakeProps> = ({ onHeadPositionUpdate }) => {
     };
     if (index !== SNAKE.getSnakeBodyCoord().length - 1) snake.length += 1;
   });
+  console.log(opacity);
   const move = useSprings(
     snake.length,
-    snake.map((item) => ({
+    snake.map((item, index) => ({
       from: { position: item.initialPosition },
       to: { position: item.finalPosition },
-      config: { duration: 80 },
+      config: {
+        mass: 1,
+        tension: 170,
+        friction: 26,
+        clamp: false,
+        precision: 0.01,
+      },
+      delay: index * 20, // добавить задержку, чтобы части тела следовали за головой плавно
     }))
   );
 
@@ -62,7 +71,7 @@ const Snake: React.FC<SnakeProps> = ({ onHeadPositionUpdate }) => {
               </>
             )}
             {index === SNAKE.getSnakeBodyCoord().length - 2 && (
-              <SnakeTail {...setSnakeTailProps(index)} />
+              <SnakeTail {...setSnakeTailProps(index)} opacity={opacity} />
             )}
             {index === SNAKE.getSnakeBodyCoord().length - 1 && <></>}
           </a.group>

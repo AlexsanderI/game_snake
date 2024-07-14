@@ -15,7 +15,7 @@ function GamePlay() {
   const { camera } = useThree();
   const gridSize = getField();
   const headPosition = useRef(new Vector3(0, 0, 0));
-  const targetPosition = useRef(new Vector3(0, 0, 5)); // Уменьшили значение Z до 5
+  const targetPosition = useRef(new Vector3(0, 0, 5));
   const lightPoint = getFoodCoord();
   let ratioX = 43;
   let ratioY = 37;
@@ -68,6 +68,7 @@ function GamePlay() {
         onHeadPositionUpdate={(position) =>
           headPosition.current.set(...position)
         }
+        opacity={0.5}
       />
       <Food />
     </mesh>

@@ -2,9 +2,16 @@ import { GeometryProps } from "../../types/three";
 import SnakeTailGeometry from "./SnakeTailGeometry";
 import { DoubleSide, Vector3 } from "three";
 
-function SnakeTail(props: GeometryProps) {
+interface SnakeTailProps extends GeometryProps {
+  opacity: number;
+}
+
+function SnakeTail(props: SnakeTailProps) {
+  const { opacity, ...geometryProps } = props;
+  // console.log(opacity);
+
   return (
-    <group {...props}>
+    <group {...geometryProps}>
       <mesh
         position={new Vector3(0, 0, 0)}
         rotation-x={0}
@@ -13,7 +20,12 @@ function SnakeTail(props: GeometryProps) {
         scale={1}
       >
         <SnakeTailGeometry />
-        <meshStandardMaterial color={0x44abda} side={DoubleSide} />
+        <meshStandardMaterial
+          color={"red"}
+          transparent={true}
+          opacity={opacity}
+          side={DoubleSide}
+        />
       </mesh>
     </group>
   );
